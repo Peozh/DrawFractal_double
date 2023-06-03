@@ -36,3 +36,6 @@ LIBS += \
     -L"C:\Coding\projects\Qt\drawFractal_double" \
     -l"cudart" \
     -l"cudafractal"\
+
+DISTFILES += \
+    cudafractal.cu
