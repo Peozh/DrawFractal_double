@@ -13,7 +13,7 @@
 class OpenGLFractalWidget : public QOpenGLWidget, public QOpenGLFunctions
 {
     Q_OBJECT
-//    std::vector<float> texture;
+
     GLuint textureId;
     double left = -1.0;
     double right = 1;

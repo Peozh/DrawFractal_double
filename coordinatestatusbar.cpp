@@ -21,7 +21,7 @@ CoordinateStatusBar::CoordinateStatusBar(QWidget* parent) : QStatusBar(parent)
     this->labels.push_back(exponentValue);
     this->labels.push_back(constantValue);
 
-    for (auto* label : labels) { /*auto f = label->font(); f.setFamily( setFont()*/ this->addPermanentWidget(label, 0); }
+    for (auto* label : labels) { this->addPermanentWidget(label, 0); }
     this->addPermanentWidget(new QLabel(this), 1);
     this->layout()->setSpacing(0);
     this->layout()->setContentsMargins(10, 0, 0, 3);

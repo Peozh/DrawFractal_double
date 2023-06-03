@@ -20,14 +20,8 @@ OpenGLFractalWidget::OpenGLFractalWidget(QWidget *parent)
     this->xPivot = double(xPixels/2.0);
     this->yPivot = double(yPixels/2.0);
 
-//    texture.resize(xPixels*yPixels);
-//    for (auto& pixel : texture)
-//    {
-//        pixel = 1.0f;
-//    }
     myCUDA::allocateHostPinnedMemory(this->host_texture, 1920, 1080);
     myCUDA::allocateDeviceMemory(this->dev_texture, 1920, 1080);
-    //    updateTexture();
 }
 
 OpenGLFractalWidget::~OpenGLFractalWidget()
@@ -52,7 +46,6 @@ void OpenGLFractalWidget::mousePressEvent(QMouseEvent *event)
 
 void OpenGLFractalWidget::mouseMoveEvent(QMouseEvent *event)
 {
-//    qDebug() << "(x, y) = (" << event->position().x() << ", " << event->position().y() << ")";
     if ((event->buttons() & Qt::LeftButton) && exponentChangeMode) // change exponent
     {
         this->exponent = dragStartExponent + (dragStartPoint.y() - event->position().y())*0.001f;
@@ -128,7 +121,7 @@ void OpenGLFractalWidget::resizeGL(int w, int h)
 
     glMatrixMode(GL_MODELVIEW); // model transformation
     glLoadIdentity();
-    glRotated(90, 1, 1, 1);
+//    glRotated(90, 1, 1, 1);
     updateTexture();
 }
 
@@ -136,12 +129,11 @@ void OpenGLFractalWidget::paintGL()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-////    glOrtho(left, right, top, bottom, -1, 1);
     glOrtho(1.0*left, 1.0*right, 1.0*top, 1.0*bottom, -1, 1);
 
     glMatrixMode(GL_MODELVIEW); // model transformation
     glLoadIdentity();
-    glRotated(90, 1, 1, 1);
+//    glRotated(90, 1, 1, 1);
 
     GLfloat backgroundVertices[4][3] = {
         {-1, -1, 0},
@@ -223,7 +215,6 @@ void OpenGLFractalWidget::render(const int xPixels, const int yPixels)
 {
     this->xPixels = xPixels;
     this->yPixels = yPixels;
-//    texture.resize(xPixels*yPixels);
     myCUDA::generateTexture(this->host_texture, this->dev_texture, xPixels, yPixels, exponent, { constant.real(), constant.imag() }, max_iteration, xPivot, yPivot, scale, log_expression);
 }
 
