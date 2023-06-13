@@ -106,7 +106,7 @@ void OpenGLFractalWidget::initializeGL()
     glEnable(GL_LIGHTING);
 
     glEnable(GL_CULL_FACE); // 최적화 : 후면 제거 활성화
-    glFrontFace(GL_CCW); // 전면/후면 판단 기준 (default)
+    glFrontFace(GL_CW); // 전면/후면 판단 기준 (default GL_CCW)
     glCullFace(GL_BACK); // 후면만 폐기 (default)
 }
 
@@ -117,7 +117,7 @@ void OpenGLFractalWidget::resizeGL(int w, int h)
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(1.0*left, 1.0*right, 1.0*top, 1.0*bottom, -1, 1);
+    glOrtho(1.0*left, 1.0*right, 1.0*bottom, 1.0*top, -1, 1);
 
     glMatrixMode(GL_MODELVIEW); // model transformation
     glLoadIdentity();
@@ -129,7 +129,7 @@ void OpenGLFractalWidget::paintGL()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(1.0*left, 1.0*right, 1.0*top, 1.0*bottom, -1, 1);
+    glOrtho(1.0*left, 1.0*right, 1.0*bottom, 1.0*top, -1, 1);
 
     glMatrixMode(GL_MODELVIEW); // model transformation
     glLoadIdentity();
